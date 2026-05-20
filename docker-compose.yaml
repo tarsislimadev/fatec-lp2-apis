@@ -5,3 +5,9 @@ services:
       - '5000:5000'
     volumes:
       - './src/server:/app'
+  client:
+    build: './src/client/'
+    ports:
+      - '8080:80'
+    volumes:
+      - './src/client:/usr/share/nginx/html'
