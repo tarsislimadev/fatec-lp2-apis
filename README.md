@@ -6,7 +6,7 @@ Usamos dados da API: https://dogapi.dog/docs/api-v2
 
 ## Como usar
 
-Instalar o [Docker](#).
+Instalar o [Docker](https://docs.docker.com/engine/install/).
 
 Rodar o projeto:
 
