@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
   const id = queryParams.get('id');
 
   if (!id) {
-    dog_detail.innerHTML = '<p>ID not found.</p>';
+    dog_detail.innerHTML = '<p class="card-message">ID not found.</p>';
     return;
   }
 
@@ -21,16 +21,26 @@ window.addEventListener('load', () => {
         const lifeMax = dog.life?.max ?? 'N/A';
         const description = dog.description ?? 'No description available.';
         dog_detail.innerHTML = `
-      <h2>${dog.name}</h2>
-      <p>Description: ${description}</p>
-      <p>Life Expectancy: ${lifeMin} - ${lifeMax} years</p>
-    `;
+          <article class="card card--featured">
+            <header class="card__header">
+              <p class="card__eyebrow">Breed details</p>
+              <h2>${dog.name}</h2>
+            </header>
+            <div class="card__body">
+              <p>${description}</p>
+              <p class="card__meta">Life expectancy: ${lifeMin} - ${lifeMax} years</p>
+            </div>
+            <footer class="card__footer">
+              <a href="/">Back to list</a>
+            </footer>
+          </article>
+        `;
       } else {
-        dog_detail.innerHTML = '<p>Dog not found.</p>';
+        dog_detail.innerHTML = '<p class="card-message">Dog not found.</p>';
       }
     })
     .catch((error) => {
       console.error('Error:', error);
-      dog_detail.innerHTML = '<p>Error loading dog details.</p>';
+      dog_detail.innerHTML = '<p class="card-message">Error loading dog details.</p>';
     });
 });
