@@ -2,7 +2,9 @@
 
 A Dogs API fornece dados de cães como um servidor de API.
 
-## como usar
+Usamos dados da API: https://dogapi.dog/docs/api-v2
+
+## Como usar
 
 Instalar o [Docker](#).
 
