@@ -20,6 +20,7 @@ CORS(app)
 
 @app.route('/api/v1/dogs', methods=['POST'])
 def list_dogs():
+  print("Received request for list of dogs")
   dogs = req.get(f'{base_url}/breeds', headers=req_headers).json()
   resp = make_response(jsonify({"message": "Data received successfully", "dogs": dogs}), 200)
   resp.headers = resp.headers.extend(resp_headers)
@@ -27,6 +28,7 @@ def list_dogs():
 
 @app.route('/api/v1/dogs/<id>', methods=['POST'])
 def get_dog(id):
+  print(f"Received request for dog with id: {id}")
   dog = req.get(f'{base_url}/breeds/{id}', headers=req_headers).json()
   resp = make_response(jsonify({"message": "Dog found", "dog": dog}), 200)
   resp.headers = resp.headers.extend(resp_headers)
