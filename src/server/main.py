@@ -21,14 +21,14 @@ res_headers = {
 def list_dogs():
   dogs = req.get(f'{base_url}/breeds', headers=req_headers).json()
   resp = make_response({"dogs": dogs}, 200)
-  resp.headers = resp.headers.extend(res_headers)
+  resp.headers.extend(res_headers)
   return resp
 
 @app.route('/api/v1/dogs/<id>', methods=['POST'])
 def get_dog(id):
   dog = req.get(f'{base_url}/breeds/{id}', headers=req_headers).json()
   resp = make_response({"dog": dog}, 200)
-  resp.headers = resp.headers.extend(res_headers)
+  resp.headers.extend(res_headers)
   return resp
 
 if __name__ == '__main__':
