@@ -13,7 +13,8 @@ window.addEventListener('load', () => {
 
   fetch(config.urls.dog(id), config.params)
     .then((resp) => resp.json())
-    .then((dog) => {
+    .then((payload) => {
+      const dog = payload?.dog?.data?.attributes;
       console.log('Dog details:', dog);
       if (dog) {
         dog_detail.innerHTML = `
