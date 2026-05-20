@@ -26,8 +26,9 @@ A página do Cão apresenta detalhes do cão. (http://localhost:8080/dogs/?id=1)
 
 ## Contribuidores
 
-Tarsis Lima
-Luis Silva
+[Tarsis Lima](#)
+
+[Luis Silva](#)
 
 ## Licença
 
