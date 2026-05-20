@@ -1,13 +1,17 @@
 const getPathName = () => '/api/v1'
 
 const getBaseURL = () => {
-  const { hostname, port } = window.location
-  const hostWithPort = port ? `${hostname}:${port}` : hostname
-  const base = hostWithPort === 'localhost:5000'
-    ? 'http://localhost:5000'
-    : 'https://redesigned-garbanzo-6ww6gqr56vw24v7-5000.app.github.dev'
+  const { hostname, port, protocol, origin } = window.location
 
-  return base + getPathName()
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:5000' + getPathName()
+  }
+
+  if (port && port !== '5000') {
+    return `${protocol}//${hostname}:5000` + getPathName()
+  }
+
+  return origin + getPathName()
 }
 
 export const config = {
