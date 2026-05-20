@@ -7,7 +7,6 @@ window.addEventListener('load', () => {
   fetch(url, { method: 'POST', headers, })
     .then(resp => resp.json())
     .then(({ dogs: { data: dogs } }) => {
-      console.log('Dogs:', dogs);
       const dogList = document.createElement('ul');
       dogs.map(({ attributes: { name, description, life }, id }) => {
         const listItem = document.createElement('li');
@@ -16,7 +15,8 @@ window.addEventListener('load', () => {
       });
       dogs_list.appendChild(dogList);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error:', error);
+      dogs_list.innerHTML = '<p>Erro ao carregar a lista de cães.</p>';
     });
 });

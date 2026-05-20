@@ -1,19 +1,25 @@
 const dog_detail = document.getElementById('dog_detail');
 
-window.addEventListener('load', async () => {
-  const response = await fetch('/api/dogs');
-  const dogs = await response.json();
+const id = new URLSearchParams(window.location.search).get('id');
+const url = `http://localhost:5000/api/v1/dogs/${id}`;
+const headers = { 'Content-Type': 'application/json' };
 
-  const id = new URLSearchParams(window.location.search).get('id');
-  const dog = dogs.find(d => d.id === id);
-
-  if (dog) {
-    dog_detail.innerHTML = `
+window.addEventListener('load', () => {
+  fetch(url, { method: 'POST', headers, })
+    .then(resp => resp.json())
+    .then((dog) => {
+      if (dog) {
+        dog_detail.innerHTML = `
       <h2>${dog.name}</h2>
       <p>Raça: ${dog.breed}</p>
       <p>Idade: ${dog.age} anos</p>
     `;
-  } else {
-    dog_detail.innerHTML = '<p>Cão não encontrado.</p>';
-  }
+      } else {
+        dog_detail.innerHTML = '<p>Cão não encontrado.</p>';
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      dog_detail.innerHTML = '<p>Erro ao carregar detalhes do cão.</p>';
+    });
 });
