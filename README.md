@@ -14,6 +14,14 @@ docker compose up -d --build
 
 Abra o `cliente` no navegador (http://localhost:8080/).
 
+### Pagina inicial (lista de cães)
+
+A página Inicial apresenta a lista de cães. (http://localhost:8080/)
+
+### Pagina do cão
+
+A página do Cão apresenta detalhes do cão. (http://localhost:8080/dogs/?id=1)
+
 ## licença
 
 [MIT](./LICENSE)
