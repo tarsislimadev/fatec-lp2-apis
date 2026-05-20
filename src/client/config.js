@@ -11,7 +11,7 @@ const getBaseURL = () => {
     return `${protocol}//${hostname}:5000` + getPathName()
   }
 
-  return origin + getPathName()
+  return 'https://redesigned-garbanzo-6ww6gqr56vw24v7-5000.app.github.dev' + getPathName()
 }
 
 export const config = {

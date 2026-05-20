@@ -1,20 +1,20 @@
-from flask import Flask, make_response
+from flask import Flask, jsonify
 from flask_cors import CORS
 import requests as req
 
 app = Flask(__name__)
-CORS(app)
+CORS(
+  app,
+  resources={r"/*": {"origins": "*"}},
+  methods=["GET", "POST", "OPTIONS", "HEAD"],
+  allow_headers=["*"],
+  max_age=600,
+)
 
 base_url = 'https://dogapi.dog/api/v2'
 
 req_headers = {
   'accept': 'application/json'
-}
-
-res_headers = {
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': '*',
 }
 
 def fetch_upstream_json(url):
@@ -31,23 +31,15 @@ def fetch_upstream_json(url):
 def list_dogs():
   ok, dogs, error = fetch_upstream_json(f'{base_url}/breeds')
   if not ok:
-    resp = make_response({"error": error}, 502)
-    resp.headers.extend(res_headers)
-    return resp
-  resp = make_response({"dogs": dogs}, 200)
-  resp.headers.extend(res_headers)
-  return resp
+    return jsonify({"error": error}), 502
+  return jsonify({"dogs": dogs}), 200
 
 @app.route('/api/v1/dogs/<id>')
 def get_dog(id):
   ok, dog, error = fetch_upstream_json(f'{base_url}/breeds/{id}')
   if not ok:
-    resp = make_response({"error": error}, 502)
-    resp.headers.extend(res_headers)
-    return resp
-  resp = make_response({"dog": dog}, 200)
-  resp.headers.extend(res_headers)
-  return resp
+    return jsonify({"error": error}), 502
+  return jsonify({"dog": dog}), 200
 
 if __name__ == '__main__':
   app.run()
