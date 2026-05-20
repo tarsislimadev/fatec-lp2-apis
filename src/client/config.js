@@ -7,5 +7,5 @@ export const config = {
     dogs: () => `${getBaseURL()}/dogs`,
     dog: (id) => `${getBaseURL()}/dogs/${id}`,
   },
-  params: { method: 'POST', headers: { 'Content-Type': 'application/json' } },
+  params: { method: 'GET', headers: { 'Accept': 'application/json' } },
 }
