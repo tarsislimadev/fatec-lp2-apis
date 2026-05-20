@@ -1,4 +1,4 @@
-import { id, urls, params } from '../config.js'
+import { config } from '../config.js'
 
 const dog_detail = document.getElementById('dog_detail');
 
