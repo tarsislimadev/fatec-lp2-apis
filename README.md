@@ -24,6 +24,11 @@ A página Inicial apresenta a lista de cães. (http://localhost:8080/)
 
 A página do Cão apresenta detalhes do cão. (http://localhost:8080/dogs/?id=1)
 
-## licença
+## Contribuidores
+
+Tarsis Lima
+Luis Silva
+
+## Licença
 
 [MIT](./LICENSE)
