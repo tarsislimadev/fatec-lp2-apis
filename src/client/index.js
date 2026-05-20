@@ -7,7 +7,7 @@ const headers = { 'Content-Type': 'application/json' };
 
 load_button.addEventListener('click', () => {
   fetch(url, { method: 'POST', headers, })
-    .then(response => response.json())
+    .then(resp => resp.json())
     .then(data => {
       console.log('Response from server:', data);
       const dogs = data.dogs.data; // Acessa a lista de cães
