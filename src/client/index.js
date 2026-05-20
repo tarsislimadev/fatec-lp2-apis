@@ -1,10 +1,9 @@
+import { config } from './config.js'
+
 const dogs_list = document.getElementById('dogs_list');
 
-const url = 'http://localhost:5000/api/v1/dogs';
-const params = { method: 'POST', headers: { 'Content-Type': 'application/json' } };
-
 window.addEventListener('load', () => {
-  fetch(url, params)
+  fetch(config.urls.dogs(), config.params)
     .then((resp) => resp.json())
     .then(({ dogs: { data: dogs } }) => {
       const dogList = document.createElement('ul');

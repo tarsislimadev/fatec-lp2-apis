@@ -1,11 +1,9 @@
+import { id, urls, params } from '../config.js'
+
 const dog_detail = document.getElementById('dog_detail');
 
-const id = new URLSearchParams(window.location.search).get('id');
-const url = `http://localhost:5000/api/v1/dogs/${id}`;
-const params = { method: 'POST', headers: { 'Content-Type': 'application/json' } };
-
 window.addEventListener('load', () => {
-  fetch(url, params)
+  fetch(config.urls.dog(id), config.params)
     .then((resp) => resp.json())
     .then((dog) => {
       console.log('Dog details:', dog);
