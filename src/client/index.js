@@ -1,20 +1,17 @@
-const load_button = document.getElementById('load_button');
-
 const dogs_list = document.getElementById('dogs_list');
 
 const url = 'http://localhost:5000/api/v1/dogs';
 const headers = { 'Content-Type': 'application/json' };
 
-load_button.addEventListener('click', () => {
+window.addEventListener('load', () => {
   fetch(url, { method: 'POST', headers, })
     .then(resp => resp.json())
-    .then(data => {
-      console.log('Response from server:', data);
-      const dogs = data.dogs.data; // Acessa a lista de cães
+    .then(({ dogs: { data: dogs } }) => {
+      console.log('Dogs:', dogs);
       const dogList = document.createElement('ul');
-      dogs.forEach(dog => {
+      dogs.map(({ attributes: { name, description, life }, id }) => {
         const listItem = document.createElement('li');
-        listItem.textContent = dog.name; // Exibe o nome do cão
+        listItem.innerHTML = `Name: ${name}, Description: ${description}, Life Min: ${life.min}, Life Max: ${life.max}. <a href="/dogs/?id=${id}">Detalhes</a>`;
         dogList.appendChild(listItem);
       });
       dogs_list.appendChild(dogList);
