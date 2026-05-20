@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
   const id = queryParams.get('id');
 
   if (!id) {
-    dog_detail.innerHTML = '<p>Id do cão não informado.</p>';
+    dog_detail.innerHTML = '<p>ID not found.</p>';
     return;
   }
 
@@ -19,18 +19,18 @@ window.addEventListener('load', () => {
       if (dog) {
         const lifeMin = dog.life?.min ?? 'N/A';
         const lifeMax = dog.life?.max ?? 'N/A';
-        const description = dog.description ?? 'Sem descricao.';
+        const description = dog.description ?? 'No description available.';
         dog_detail.innerHTML = `
       <h2>${dog.name}</h2>
-      <p>Descricao: ${description}</p>
-      <p>Expectativa de vida: ${lifeMin} - ${lifeMax} anos</p>
+      <p>Description: ${description}</p>
+      <p>Life Expectancy: ${lifeMin} - ${lifeMax} years</p>
     `;
       } else {
-        dog_detail.innerHTML = '<p>Cão não encontrado.</p>';
+        dog_detail.innerHTML = '<p>Dog not found.</p>';
       }
     })
     .catch((error) => {
       console.error('Error:', error);
-      dog_detail.innerHTML = '<p>Erro ao carregar detalhes do cão.</p>';
+      dog_detail.innerHTML = '<p>Error loading dog details.</p>';
     });
 });
