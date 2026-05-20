@@ -17,10 +17,13 @@ window.addEventListener('load', () => {
       const dog = payload?.dog?.data?.attributes;
       console.log('Dog details:', dog);
       if (dog) {
+        const lifeMin = dog.life?.min ?? 'N/A';
+        const lifeMax = dog.life?.max ?? 'N/A';
+        const description = dog.description ?? 'Sem descricao.';
         dog_detail.innerHTML = `
       <h2>${dog.name}</h2>
-      <p>Raça: ${dog.breed}</p>
-      <p>Idade: ${dog.age} anos</p>
+      <p>Descricao: ${description}</p>
+      <p>Expectativa de vida: ${lifeMin} - ${lifeMax} anos</p>
     `;
       } else {
         dog_detail.innerHTML = '<p>Cão não encontrado.</p>';
