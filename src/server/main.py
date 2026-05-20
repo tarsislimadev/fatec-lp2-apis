@@ -4,13 +4,13 @@ import requests as req
 
 app = Flask(__name__)
 
-url = 'https://dogapi.dog/api/v2/breeds?page%5Bnumber%5D=1&page%5Bsize%5D=10'
+base_url = 'https://dogapi.dog/api/v2'
 
 req_headers = {
   'accept': 'application/json'
 }
 
-res_headers = {
+resp_headers = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': '*',
@@ -19,10 +19,17 @@ res_headers = {
 CORS(app)
 
 @app.route('/api/v1/dogs', methods=['POST'])
-def receive_data():
-  dogs = req.get(url, headers=req_headers).json()
+def list_dogs():
+  dogs = req.get(f'{base_url}/breeds', headers=req_headers).json()
   resp = make_response(jsonify({"message": "Data received successfully", "dogs": dogs}), 200)
-  resp.headers.extend(res_headers)
+  resp.headers = resp.headers.extend(resp_headers)
+  return resp
+
+@app.route('/api/v1/dogs/<id>', methods=['POST'])
+def get_dog(id):
+  dog = req.get(f'{base_url}/breeds/{id}', headers=req_headers).json()
+  resp = make_response(jsonify({"message": "Dog found", "dog": dog}), 200)
+  resp.headers = resp.headers.extend(resp_headers)
   return resp
 
 if __name__ == '__main__':
